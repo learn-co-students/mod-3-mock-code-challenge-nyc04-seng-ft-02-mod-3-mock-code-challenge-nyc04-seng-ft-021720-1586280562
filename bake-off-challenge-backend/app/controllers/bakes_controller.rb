@@ -28,6 +28,12 @@ class BakesController < ApplicationController
     render json: bake
   end
 
+  def destroy
+    bake = Bake.find(params[:id])
+    bake.destroy
+    render json: bakes
+  end
+
   private
 
   def create_bake_params
