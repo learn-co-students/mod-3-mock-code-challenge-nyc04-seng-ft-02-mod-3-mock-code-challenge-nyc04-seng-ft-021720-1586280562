@@ -33,8 +33,10 @@ function renderBake({name, id, image_url, description, score}) {
     <img src="${image_url}" class="bake-image">
     <h2>${name}</h2>
     <p>${description}</p>
-    <input type="number" class="score-input" value="${score}"></input>
-    <button type="submit" class="rate-button">Rate</button>
+    <form id="score-form">
+      <input type="number" class="score-input" value="${score}" />
+      <input type="submit" class="rate-button" value="Rate" />
+    </form>
     <br>
     <button class="delete-button">Delete</button>
     `
@@ -42,14 +44,22 @@ function renderBake({name, id, image_url, description, score}) {
 }
 
 function deleteBake(bakeDiv) {
-  fetch(BASE_URL + `/bakes/${bakeDiv.id}`, {
+  return fetch(BASE_URL + `/bakes/${bakeDiv.dataset.id}`, {
     method: 'DELETE'
   })
-  .then(response => {
-    if(response.ok){
-      bakeDiv.remove()
-    }
+  .then(response => response.json())
+}
+
+function rateBake(bakeDiv, score) {
+  fetch(BASE_URL + `/bakes/${bakeDiv.dataset.id}/ratings`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 699a9ff1-88ca-4d77-a26e-e4bc31cfc261"
+    },
+    body: JSON.stringify({score: score.value}),
   })
+    .then(response => response.json())
 }
 
 bakeList.addEventListener("click", event =>{
@@ -66,13 +76,15 @@ bakeDetail.addEventListener("click", event => {
   if(event.target.className === "delete-button"){
     const bakeContainer = event.target.closest('main').querySelector('#bakes-container')
     const bakeLi = bakeContainer.querySelector(`[data-id='${bakeId}']`)
-    bakeLi.remove()
     deleteBake(bakeDiv)
-    }
-    else if(event.target.className === "rate-button"){
-
-    }
-  })
+    bakeDiv.remove()
+    bakeLi.remove()
+  }
+  else if(event.target.className === "rate-button"){
+    let score = event.target.parentElement.querySelector('.score-input')
+    rateBake(bakeDiv, score)
+  }
+})
 
 bakeCreate.addEventListener('submit', event=> {
   event.preventDefault()
@@ -89,10 +101,15 @@ bakeCreate.addEventListener('submit', event=> {
       },
       body: JSON.stringify(bake),
     })
-    .then(response => response.json())
-    .then(bake => renderBakeList(bake))
-
-  event.target.reset()
+    .then(response => {
+      if(response.ok){
+        response.json()
+        .then(bake => renderBakeList(bake))
+        event.target.reset()
+        event.target.parentElement.style.display = "none"
+      }
+    })
+    
 })
 
     

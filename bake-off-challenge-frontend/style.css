@@ -25,6 +25,7 @@ body {
 
 /* typography */
 h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0;
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -117,6 +118,10 @@ section {
   width: 4rem;
   text-align: center;
   display: inline-block;
+}
+
+.delete-button {
+  width: 4rem;
 }
 
 /* modal */
