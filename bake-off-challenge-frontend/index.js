@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const url = "http://localhost:3000/bakes";
   const bakesCont = document.getElementById("bakes-container");
   const bakeDetail = document.getElementById("detail");
+  const newBakeForm = document.getElementById("new-bake-form");
   renderBakeEntries();
   getFirstBake();
 
@@ -26,6 +27,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   //************** FORM HELPERS **********************//
+  // D3: **When this form is submitted**, a new bake should be created in the backend and added to the list of bakes displayed in the sidebar
+
+  newBakeForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const newBake = {
+      name: e.target.name.value,
+      image_url: e.target.image_url.value,
+      description: e.target.description.value,
+      score: 0
+    };
+    createBake(newBake);
+  })
+
+
   // function rateBake(bakeObj, form) {
   //   form.addEventListener("submit", function() {
   //     prevent de
@@ -33,6 +48,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   // };
 
   //************** EVENT HELPERS **********************//
+  // D2: Details for the bake should show up in the detail area
   // clicking on an entry on the left renders the details on the right
   function renderDetails(el, bakeObj) {
     el.addEventListener("click", function() {
@@ -96,6 +112,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
   };
 
+  // D1: The first bake should show in the detail view
   // renders the first element of the array into the details section
   function getFirstBake() {
     fetch(url)
@@ -105,21 +122,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
   };
 
+  function createBake(bakeObj) {
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(bakeObj),
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+  };
+
 });
 
-
-
-// D1: The first bake should show in the detail view (see deliverable 2)
-
-// D2: **When a bake is clicked in the sidebar**, the details for the bake should show up in the detail area
-
-// D3: When the "Make New Bake" button is clicked, a popup (modal) will display a form (this part is already done for you)
-
-// D3: **When this form is submitted**, a new bake should be created in the backend and added to the list of bakes displayed in the sidebar
-
-// ***************************** BONUS DELIVERABLES ************************ //
 // D4: **In the detail view, when a user enters a score and submits**, the score should be saved in the backend and persisted in the frontend
 
 // D5: **When the user clicks 'Judge Bakes'**, the winner should be revealed in the sidebar
-
-// D5: 
