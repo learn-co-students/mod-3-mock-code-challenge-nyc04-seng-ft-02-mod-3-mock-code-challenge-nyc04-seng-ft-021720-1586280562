@@ -1,6 +1,3 @@
-// your code here!
-console.log("🥧");
-
 // I removed the 'defer' from the html, so that we can make those decisions
 // inside this file instead, enabling us to allow functions to be defined while
 // the DOM is still loading.
