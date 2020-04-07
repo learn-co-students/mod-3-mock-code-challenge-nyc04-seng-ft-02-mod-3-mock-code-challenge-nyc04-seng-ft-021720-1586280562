@@ -72,15 +72,15 @@ Example response:
 The HTML of how you should render the selected bake in the `#detail` div should look like this:
 
 ```html
-  <img src="https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2019/10/icecreams_forweb.jpg" alt="Alice’s Orange & Cardamom ‘Ice Cream’ Buns">
-  <h1>Alice’s Orange & Cardamom ‘Ice Cream’ Buns</h1>
-  <p class="description">
-    Fragrant breads baked to resemble ice-cream tubs are topped with a delicious cream-cheese icing and sprinkles. They are great fun to serve to children.
-  </p>
-  <form id="score-form" data-id="1">
-    <input value="10" type="number" name="score" min="0" max="10" step="1">
-    <input type="submit" value="Rate">
-  </form>
+    <img src="https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2019/10/icecreams_forweb.jpg" alt="Alice’s Orange & Cardamom ‘Ice Cream’ Buns">
+    <h1>Alice’s Orange & Cardamom ‘Ice Cream’ Buns</h1>
+    <p class="description">
+      Fragrant breads baked to resemble ice-cream tubs are topped with a delicious cream-cheese icing and sprinkles. They are great fun to serve to children.
+    </p>
+    <form id="score-form" data-id="1">
+      <input value="10" type="number" name="score" min="0" max="10" step="1">
+      <input type="submit" value="Rate">
+    </form>
 ```
 
 You can either use the data from your initial fetch with ALL bakes to render the detail view, or you can make another fetch to the following endpoint:
