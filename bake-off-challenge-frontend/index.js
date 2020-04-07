@@ -89,20 +89,32 @@ newBakeForm.addEventListener("submit", function(e){
 
 judgeBakeButton.addEventListener("click", function(e){
     e.preventDefault
-
-    fetch(BASE_URL + '/bakes')
+    
+    fetch(BASE_URL + '/bakes/winner')
     .then((response) => {
     return response.json();
     })
-    .then((bakeArr) => {
-    bakeArr.forEach(highestScore)
-    console.log(bakeScores)
-    return Math.max(bakeScores)
-});
+    .then((bakeWinner) => {
+        // I misread the instructions and thus did this the hard way.
+        // Here's my original solution commented out.
+        
+        // getWinningBake(bakeArr)
+        // for (bake of bakeArr){
+        //     bakeArr.forEach(highestScore)
+        //     let high_score = Math.max(bakeScores)
 
+        // if (bake.score >= high_score)
+        // displayBake(bake)
+        bakesContainer.innerHTML = ""
+        renderBake(bakeWinner)
+        // I decided to display the winner on the main page too
+        displayBake(bakeWinner)
+    });
 })
 
-function highestScore(bake){
-    bakeScores = [];
-    bakeScores.push(bake.score)
-}
+// function highestScore(bake){
+//     bakeScores = [];
+//     bakeScores.push(bake.score)
+//     console.log(Math.max(bakeScores))
+    
+// }
