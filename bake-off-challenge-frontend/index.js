@@ -36,6 +36,32 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
+function scoreBake(scoreForm){
+	// grab the data from the form
+	scoreFormData = {
+		score: scoreForm.score.value
+	}
+	
+	// patch the bake
+	fetch(BAKE_ENDPOINT + scoreForm.dataset.id + '/ratings', {
+		method: 'POST',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Bearer 699a9ff1-88ca-4d77-a26e-e4bc31cfc261"
+		},
+		body: JSON.stringify(scoreFormData)
+	})
+		.then(response => response.json())
+		.then(bake => {
+			if (bake.id) {
+				scoreForm.score.value = bake.score;
+				console.log('Score for ', bake.id, ' is now ', bake.score);
+			} else {
+				console.log('Error updating bake: ', bake);
+			}
+		});
+}
+
 function createNewBakeFromForm(){
 	// grab the data from the form
 	const newBakeData = {
@@ -48,7 +74,7 @@ function createNewBakeFromForm(){
 	createNewBake(newBakeData);
 
 	// clear the form
-	// newBakeForm.reset();
+	newBakeForm.reset();
 
 	// close the modal
 	closeModal();
@@ -102,6 +128,12 @@ function updateBakeDetailView(bake){
 	scoreSubmit.type = 'submit';
 	scoreSubmit.value = 'Rate';
 	scoreForm.append(scoreInput, scoreSubmit);
+
+	// submit handler for score form
+	scoreForm.addEventListener('submit', event => {
+		event.preventDefault();
+		scoreBake(event.target);
+	});
 
 	// package the elements into an array
 	const bakeDetailViewElements = [image, name, description, scoreForm];
