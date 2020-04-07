@@ -1,4 +1,4 @@
-# Bake Off Challenge
+<!-- # Bake Off Challenge
 
 Today, we'll be making an app to create delicious baked goods and allow the judges to rate our creations!
 
@@ -10,7 +10,7 @@ From the `bake-off-challenge-backend` directory, run the following commands to s
 $ bundle install            # Install gems
 $ rails db:migrate db:seed  # Migrate and seed
 $ rails s                   # Start the server
-```
+``` -->
 
 A full list of available routes can be found by visiting `http://localhost:3000/rails/info/routes`.
   
@@ -22,8 +22,8 @@ Here's a demo of the completed app:
 
 ## Deliverables
 
-1. **When the page first loads**, all the bakes should display in the sidebar. The first bake should show in the detail view (see deliverable 2).
-2. **When a bake is clicked in the sidebar**, the details for the bake should show up in the detail area.
+<!-- 1. **When the page first loads**, all the bakes should display in the sidebar. The first bake should show in the detail view (see deliverable 2). -->
+<!-- 2. **When a bake is clicked in the sidebar**, the details for the bake should show up in the detail area. -->
 3. When the "Make New Bake" button is clicked, a popup (modal) will display a form (this part is already done for you). **When this form is submitted**, a new bake should be created in the backend and added to the list of bakes displayed in the sidebar.
 
 ## Bonus Deliverables
@@ -32,9 +32,9 @@ Here's a demo of the completed app:
 
 ### Get All Bakes (Deliverable 1)
 
-**When the page first loads**, all the bakes should display in the sidebar. The first bake should show in the detail view (see deliverable 2).
+<!-- **When the page first loads**, all the bakes should display in the sidebar. The first bake should show in the detail view (see deliverable 2). -->
 
-To create each list item in the `#bakes-container` in the sidebar, use the following HTML as a template:
+<!-- To create each list item in the `#bakes-container` in the sidebar, use the following HTML as a template:
 
 ```html
 <li class="item" data-id="1">Rahul’s Chocolate-dipped Orange Madeleines</li>
@@ -63,11 +63,11 @@ Example response:
     "score": 2
   }
 ]
-```
+``` -->
 
 ### Show Bake Details (Deliverable 2)
 
-**When a bake is clicked in the sidebar**, the details for the bake should show up in the detail area.
+<!-- **When a bake is clicked in the sidebar**, the details for the bake should show up in the detail area.
 
 The HTML of how you should render the selected bake in the `#detail` div should look like this:
 
@@ -83,8 +83,8 @@ The HTML of how you should render the selected bake in the `#detail` div should 
   </form>
 ```
 
-You can either use the data from your initial fetch with ALL bakes to render the detail view, or you can make another fetch to the following endpoint:
-
+You can either use the data from your initial fetch with ALL bakes to render the detail view, or you can make another fetch to the following endpoint: -->
+<!-- 
 *Get One Bake*
 ```
 Route: GET /bakes/:id
@@ -97,9 +97,9 @@ Example Response:
   "image_url": "https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2019/05/Choc_Orange_Madalienes_1024x450-1024x450.png",
   "score": 0
 }
-```
+``` -->
 
-### Create New Bake (Deliverable 3)
+<!-- ### Create New Bake (Deliverable 3)
 
 When the "Make New Bake" button is clicked, a popup (modal) will display a form (this part is already done for you). **When this form is submitted**, a new bake should be created in the backend and added to the list of bakes displayed in the sidebar.
 
@@ -127,8 +127,8 @@ Example Response:
   "image_url": "https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2019/05/Choc_Orange_Madalienes_1024x450-1024x450.png",
   "score": 0
 }
-```
-
+``` -->
+<!-- 
 ### Rate Bake (Deliverable 4)
 
 **In the detail view, when a user enters a score and submits**, the score should be saved in the backend and persisted in the frontend.
@@ -156,7 +156,7 @@ Example Response:
   "image_url": "https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2019/05/Choc_Orange_Madalienes_1024x450-1024x450.png",
   "score": 10
 }
-```
+``` -->
 
 ### View Winner (Deliverable 5)
 
