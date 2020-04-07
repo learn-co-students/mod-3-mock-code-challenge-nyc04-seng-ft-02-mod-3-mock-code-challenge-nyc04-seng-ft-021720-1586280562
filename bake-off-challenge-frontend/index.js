@@ -34,6 +34,19 @@ document.addEventListener('DOMContentLoaded', function(){
 		createNewBakeFromForm();
 	});
 
+	// judge the bakes
+	document.querySelector('#judge-bake-button').addEventListener('click', event => {
+		fetch(BAKE_ENDPOINT + 'winner')
+			.then(response => response.json())
+			.then(bake => {
+				if (bake.id){
+					bakesContainer.querySelector(`[data-id="${bake.id}"]`).classList.add('winner');
+				} else {
+					console.log('Error getting winning bake: ', bake);
+				}
+			});
+	});
+
 });
 
 function scoreBake(scoreForm){
