@@ -1,5 +1,5 @@
 // your code here!
-console.log("hi, cutie-🥧");
+console.log("🥧");
 
 // I removed the 'defer' from the html, so that we can make those decisions
 // inside this file instead, enabling us to allow functions to be defined while
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	// grab some elements from the document
 	bakesContainer = document.querySelector('#bakes-container');
 	bakeDetailContainer = document.querySelector('#detail');
+	newBakeForm = document.querySelector('#new-bake-form');
 
 	// get the existing bakes from the server and add them to the page
 	fetch(BAKE_ENDPOINT)
@@ -27,7 +28,49 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 	});
 
+	// create new bake
+	newBakeForm.addEventListener('submit', event => {
+		event.preventDefault();
+		createNewBakeFromForm();
+	});
+
 });
+
+function createNewBakeFromForm(){
+	// grab the data from the form
+	const newBakeData = {
+		name: newBakeForm.name.value,
+		image_url: newBakeForm.image_url.value,
+		description: newBakeForm.description.value
+	};
+
+	// create the bake
+	createNewBake(newBakeData);
+
+	// clear the form
+	// newBakeForm.reset();
+
+	// close the modal
+	closeModal();
+}
+
+function createNewBake(bake){
+	fetch(BAKE_ENDPOINT, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(bake)
+	})
+		.then(response => response.json())
+		.then(bake => {
+			if (bake.id){
+				addBakeToPage(bake);
+			} else {
+				console.log('Error creating bake: ', bake);
+			}
+		});
+}
 
 function updateBakeDetailView(bake){
 	// image
