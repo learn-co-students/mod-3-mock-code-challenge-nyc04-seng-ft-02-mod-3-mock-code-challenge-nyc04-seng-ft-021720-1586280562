@@ -23,9 +23,21 @@ class BakesController < ApplicationController
     end
   end
 
+  def update
+    bake = Bake.find(params[:id])
+    bake.update(params[:score])
+    render json: {}
+  end
+
   def winner
     bake = Bake.winner
     render json: bake
+  end
+
+  def destroy
+    bake = Bake.find(params[:id])
+    bake.destroy
+    render json: {}
   end
 
   private
